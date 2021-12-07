@@ -1,31 +1,38 @@
-const express = require("express");
-const mysql = require("mysql");
-const path = require("path");
-const expressLayouts = require("express-ejs-layouts");
-const app = express();
-const methodOverride = require("method-override");
-const ejsMate = require("ejs-mate");
-const session = require("express-session");
-const flash = require("connect-flash");
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
-
-const userRoutes = require("./routes/user");
-//const db = require('./db_controller/db_controller')
-
 require("dotenv").config();
 
+const express = require("express");
+// const session = require("express-session");
+//const cookie = require('cookie-parser');
+//const multer = require('multer');
+//const async = require('async');
+//const nodemailer = require('nodemailer');
+//const crypto = require('crypto');
+//const expressValidator = require('express-validator');
+// const sweetalert = require('sweetalert2');
+//const bodyParser = require('body-parser');
+//const mysql = require("mysql");
+const path = require("path");
+const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
+// const flash = require("connect-flash");
+// const passport = require("passport");
+// const LocalStrategy = require("passport-local");
+const userRoutes = require("./routes/users");
+//const db = require('./models/db_controller');
+const signup = require("./controllers/signup");
+
 //app.use("/public", express.static(path.join(__dirname, "static"))); //absolute path to static folder to be more accurate, more safe
+
 app.use(express.static(__dirname + "/public"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
 
-//app.use(expressLayouts)
-//app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-
+//app.use(express.json());
+//app.use(cookie());
 const port = process.env.PORT;
 
 // function authenticateAdmin(req, res, next) {
@@ -68,6 +75,7 @@ app.get("/home", (req, res) => {
     res.render("boilerplate");
 });
 
+app.use("/signup", signup);
 app.use("/user", userRoutes);
 
 app.all("*", (req, res, next) => {
