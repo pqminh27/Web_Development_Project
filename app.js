@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const app = express();
 // const session = require("express-session");
 //const cookie = require('cookie-parser');
 //const multer = require('multer');
@@ -12,14 +13,14 @@ const express = require("express");
 //const bodyParser = require('body-parser');
 //const mysql = require("mysql");
 const path = require("path");
-const methodOverride = require("method-override");
+const methodOverride = require("method-override"); //to override DELETE and PUT in HTML form
 const ejsMate = require("ejs-mate");
 // const flash = require("connect-flash");
 // const passport = require("passport");
 // const LocalStrategy = require("passport-local");
-const userRoutes = require("./routes/users");
+//const userRoutes = require("./routes/users");
 //const db = require('./models/db_controller');
-const signup = require("./controllers/signup");
+//const signup = require("./controllers/signup");
 
 //app.use("/public", express.static(path.join(__dirname, "static"))); //absolute path to static folder to be more accurate, more safe
 
@@ -75,8 +76,8 @@ app.get("/home", (req, res) => {
     res.render("boilerplate");
 });
 
-app.use("/signup", signup);
-app.use("/user", userRoutes);
+//app.use("/signup", signup);
+//app.use("/user", userRoutes);
 
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page Not Found!", 404));
@@ -87,6 +88,13 @@ app.use((err, req, res, next) => {
     if (!err.message) err.message = "Some Errors here!";
     res.status(status).render("error", { err });
 });
+
+//error handler
+app.use(function(err,req,res,next) {
+    res.locals.message = err.message;
+    res.status(err.status || 500);
+    res.render("error.ejs");
+})
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
