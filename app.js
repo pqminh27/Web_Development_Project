@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const express = require("express");
 const app = express();
 // const session = require("express-session");
@@ -23,6 +22,12 @@ const db = require("./models/db_controller");
 const signup = require("./controllers/signup");
 const login = require("./controllers/login");
 const verify = require("./controllers/verify");
+const reset = require("./controllers/reset");
+const employee = require("./controllers/employee_controller");
+const ordertable = require("./controllers/order_table");
+const food = require("./controllers/food");
+const receipt = require("./controllers/receipt");
+const review = require("./controllers/review");
 //const { verify } = require("crypto");
 
 //app.use("/public", express.static(path.join(__dirname, "static"))); //absolute path to static folder to be more accurate, more safe
@@ -75,17 +80,22 @@ const port = process.env.PORT;
 //     next();
 // });
 
-app.get("/home", (req, res) => {
-    res.render("boilerplate");
-});
-
 app.use("/signup", signup);
 app.use("/login", login);
 app.use("/verify", verify);
-//app.use("/user", userRoutes);
+app.use("/reset", reset);
+app.use("/employee", employee);
+app.use("/order", ordertable);
+app.use("/food", food);
+app.use("/receipt", receipt);
+app.use("/review", review);
 
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page Not Found!", 404));
+});
+
+app.get("/", (req, res) => {
+    res.render("boilerplate");
 });
 
 app.use((err, req, res, next) => {

@@ -68,8 +68,8 @@ router.post(
             };
 
             transporter.sendMail(mailOptions, function(err, info) {
-                if (err) return console.log("Send Mail error: " + err);
-                console.log("Send Mail: " + info);
+                if (err) return console.log("Send Mail singup Error: " + err);
+                console.log("Send Mail signup: " + info);
             });
 
             res.send("Please check your email to verify!");
