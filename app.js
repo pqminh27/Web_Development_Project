@@ -1,36 +1,36 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
-// const session = require("express-session");
-//const cookie = require('cookie-parser');
-//const multer = require('multer');
-//const async = require('async');
+require("dotenv").config();
+const session = require("express-session");
+const cookie = require("cookie-parser");
+const multer = require("multer");
+const async = require("async");
 const nodemailer = require("nodemailer");
-//const crypto = require('crypto');
-//const expressValidator = require('express-validator');
-// const sweetalert = require('sweetalert2');
+const crypto = require("crypto");
+const expressValidator = require("express-validator");
+const sweetalert = require("sweetalert2");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const path = require("path");
 const methodOverride = require("method-override"); //to override DELETE and PUT in HTML form
 const ejsMate = require("ejs-mate");
+//const expressLayouts = require("express-ejs-layouts");
 // const flash = require("connect-flash");
 // const passport = require("passport");
 // const LocalStrategy = require("passport-local");
-//const userRoutes = require("./routes/users");
+
 const db = require("./models/db_controller");
 const signup = require("./controllers/signup");
 const login = require("./controllers/login");
+const logout = require("./controllers/logout");
 const verify = require("./controllers/verify");
-const reset = require("./controllers/reset");
+const resetpass = require("./controllers/reset");
 const employee = require("./controllers/employee_controller");
 const ordertable = require("./controllers/order_table");
 const food = require("./controllers/food");
 const receipt = require("./controllers/receipt");
 const review = require("./controllers/review");
-//const { verify } = require("crypto");
-
-//app.use("/public", express.static(path.join(__dirname, "static"))); //absolute path to static folder to be more accurate, more safe
+const setpass = require("./controllers/setpassword");
 
 app.use(express.static(__dirname + "/public"));
 app.set("views", path.join(__dirname, "views"));
@@ -41,15 +41,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(bodyParser.json());
-//app.use(cookie());
+app.use(cookie());
 const port = process.env.PORT;
-
-// function authenticateAdmin(req, res, next) {
-//     if (req.query.admin === "true") next();
-//     else {
-//         res.send("Client page")
-//     }
-// }
 
 // const sessionConfig = {
 //     secret: 'thisissecret',
@@ -82,35 +75,32 @@ const port = process.env.PORT;
 
 app.use("/signup", signup);
 app.use("/login", login);
+app.use("/logout", logout);
 app.use("/verify", verify);
-app.use("/reset", reset);
+app.use("/resetpassword", resetpass);
+app.use("/setpassword", setpass);
 app.use("/employee", employee);
-app.use("/order", ordertable);
+app.use("/ordertable", ordertable);
 app.use("/food", food);
 app.use("/receipt", receipt);
 app.use("/review", review);
+
+app.get("/", (req, res) => {
+    res.render("home");
+});
 
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page Not Found!", 404));
 });
 
-app.get("/", (req, res) => {
-    res.render("boilerplate");
-});
-
 app.use((err, req, res, next) => {
     const { status = 500 } = err;
     if (!err.message) err.message = "Some Errors here!";
-    res.status(status).render("error", { err });
+    res.status(status).render("error.ejs", { err });
 });
-
-//error handler
-// app.use(function(err, req, res, next) {
-//     res.locals.message = err.message;
-//     res.status(err.status || 500);
-//     res.render("error.ejs");
-// });
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+module.exports = app;

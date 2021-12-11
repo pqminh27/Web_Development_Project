@@ -10,9 +10,9 @@ const nodemailer = require("nodemailer");
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-// router.get("/", (req, res) => {
-//     res.render("resetpassword.ejs");
-// });
+router.get("/", (req, res) => {
+    res.render("resetpassword.ejs");
+});
 
 router.post("/", function(req, res) {
     const email = req.body.email;

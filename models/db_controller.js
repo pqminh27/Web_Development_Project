@@ -16,6 +16,11 @@ config.connect((err) => {
     else console.log("Database Connected");
 });
 
+module.exports.getuserdetails = function(username, callback) {
+    const query = "SELECT * FROM users WHERE username = '" + username + "'";
+    config.query(query, callback);
+};
+
 module.exports.signup = function(username, email, password, status, callback) {
     config.query(
         `SELECT email FROM users WHERE email = "${email}"`,
@@ -29,8 +34,24 @@ module.exports.signup = function(username, email, password, status, callback) {
     );
 };
 
+module.exports.edituserdetails = function(
+    id,
+    username,
+    email,
+    password,
+    callback
+) {
+    const query = `UPDATE users SET username = "${username}", email = "${email}", password = "${password}" WHERE id = "${id}"`;
+    config.query(query, callback);
+};
+
 module.exports.verify = function(username, email, token, callback) {
     const query = `INSERT INTO verify(username,email,token) VALUES("${username}","${email}","${token}")`;
+    config.query(query, callback);
+};
+
+module.exports.setpassword = function(id, newpassword, callback) {
+    const query = `UPDATE users SET password = "${newpassword}" WHERE id = "${id}"`;
     config.query(query, callback);
 };
 
@@ -40,13 +61,19 @@ module.exports.matchtoken = function(id, token, callback) {
     config.query(query, callback);
 };
 
+module.exports.checktoken = function(token, callback) {
+    const query = `SELECT * FROM temp WHERE token = "${token}"`;
+    con.query(query, callback);
+    console.log(query);
+};
+
 module.exports.updateverify = function(email, email_status, callback) {
     const query = `UPDATE users SET email_status = "${email_status}" WHERE email = "${email}"`;
     config.query(query, callback);
 };
 
 module.exports.getuserid = function(email, callback) {
-    const query = 'SELECT * FROM verify WHERE email="' + email + '"';
+    const query = 'SELECT * FROM verify WHERE email = "' + email + '"';
     config.query(query, callback);
 };
 
@@ -195,5 +222,34 @@ module.exports.postReview = function(message, name, email, subject, callback) {
 
 module.exports.getReview = function(callback) {
     const query = "SELECT * FROM review";
+    config.query(query, callback);
+};
+
+module.exports.getAllTableOrders = function(callback) {
+    const query = "SELECT * FROM table_order";
+    config.query(query, callback);
+};
+
+module.exports.getTableOrderById = function(id, callback) {
+    const query = `SELECT * FROM table_order WHERE id = "${id}"`;
+    config.query(query, callback);
+};
+
+module.exports.editTableOrder = function(
+    id,
+    name,
+    email,
+    phone,
+    date,
+    time,
+    people,
+    callback
+) {
+    const query = `UPDATE table_order SET name = "${name}", email = "${email}", phone = "${phone}", date = "${date}", time = "${time}", people = "${people}" WHERE id = "${id}"`;
+    config.query(query, callback);
+};
+
+module.exports.deleteTableOrder = function(id, callback) {
+    const query = `DELETE FROM table_order WHERE id = "${id}"`;
     config.query(query, callback);
 };

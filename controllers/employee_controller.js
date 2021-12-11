@@ -12,8 +12,9 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.get("*", (req, res, next) => {
-    if (req.cookies["username"] == null) res.redirect("/login");
-    else next();
+    if (req.cookies["username"] == null) {
+        res.redirect("/login");
+    } else next();
 });
 
 const storage = multer.diskStorage({

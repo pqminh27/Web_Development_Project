@@ -5,231 +5,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page Webiste</title>
+    <title>Banhmi Page Webiste</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 
-    <!-- google fonts cdn link  -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;500&family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet" />
-
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="icon" type="image/png" href="images/icontaco2.png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
+    <!-- bootstrap 5 causes underline -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
     <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
     <%- include('../partials/header') %>
-
-        <section class="home" id="home">
-            <div class="content" data-aos="fade-right">
-                <h3>We belive good food offer great smile</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, odit distinctio error corporis adipisci molestias eveniet optio quaerat tempore asperiores!
-                </p>
-                <a href="#"><button class="btn">get started</button></a>
-            </div>
-
-            <div class="image" data-aos="fade-up">
-                <img src="images/home-img.png" alt="" />
-            </div>
-        </section>
-
-        <section class="about" id="about">
-            <div class="image" data-aos="fade-right"></div>
-
-            <div class="content" data-aos="fade-left">
-                <h3>a word about us</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea accusantium eligendi a totam consequatur! Quis minus amet iusto iure repudiandae, incidunt enim fugiat ipsa? Iure quam et quo quos quisquam!
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint totam pariatur saepe sit nostrum consequuntur, praesentium accusamus harum voluptate soluta.
-                </p>
-                <a href="#"><button class="btn">learn more</button></a>
-            </div>
-        </section>
-
-        <section class="menu" id="menu">
-            <h1 class="heading">our <span>menu</span></h1>
-
-            <ul class="list" data-aos="fade-down">
-                <li class="btn" data-src="images/menu1.jpg">breakfast</li>
-                <li class="btn active" data-src="images/menu2.jpg">lunch</li>
-                <li class="btn" data-src="images/menu3.jpg">dinner</li>
-                <li class="btn" data-src="images/menu4.jpg">dessert</li>
-            </ul>
-
-            <div class="row" data-aos="fade-right">
-                <div class="image" data-aos="fade-left">
-                    <img src="images/menu2.jpg" id="menu-img" alt="" />
-                </div>
-
-                <div class="content">
-                    <div class="info">
-                        <h3><span>01.</span> we serve best food in the country</h3>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, vero?
-                        </p>
-                    </div>
-                    <div class="info">
-                        <h3><span>02.</span> we serve best food in the country</h3>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, vero?
-                        </p>
-                    </div>
-                    <div class="info">
-                        <h3><span>03.</span> we serve best food in the country</h3>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, vero?
-                        </p>
-                    </div>
-                    <div class="info">
-                        <h3><span>04.</span> we serve best food in the country</h3>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, vero?
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="popular" id="popular">
-            <h1 class="heading">most <span>popular</span> foods</h1>
-
-            <div class="box-container">
-                <div class="box" data-aos="fade-right">
-                    <img src="images/product1.jpg" alt="" />
-                    <h3>delicious food</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="price">$30.00</div>
-                    <a href="#"><button class="btn">add to cart</button></a>
-                </div>
-
-                <div class="box" data-aos="fade-left">
-                    <img src="images/product2.jpg" alt="" />
-                    <h3>delicious food</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="price">$30.00</div>
-                    <a href="#"><button class="btn">add to cart</button></a>
-                </div>
-
-                <div class="box" data-aos="fade-right">
-                    <img src="images/product3.jpg" alt="" />
-                    <h3>delicious food</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="price">$30.00</div>
-                    <a href="#"><button class="btn">add to cart</button></a>
-                </div>
-
-                <div class="box" data-aos="fade-left">
-                    <img src="images/product4.jpg" alt="" />
-                    <h3>delicious food</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="price">$30.00</div>
-                    <a href="#"><button class="btn">add to cart</button></a>
-                </div>
-            </div>
-        </section>
-
-        <section class="gallery" id="gallery">
-            <h1 class="heading">our food <span>gallery</span></h1>
-
-            <div class="box-container">
-                <div class="box" data-aos="fade-up">
-                    <img src="images/img1.jpg" alt="" />
-                    <h3>delicious food 1</h3>
-                </div>
-
-                <div class="box" data-aos="fade-up">
-                    <img src="images/img2.jpg" alt="" />
-                    <h3>delicious food 2</h3>
-                </div>
-
-                <div class="box" data-aos="fade-up">
-                    <img src="images/img3.jpg" alt="" />
-                    <h3>delicious food 3</h3>
-                </div>
-
-                <div class="box" data-aos="fade-up">
-                    <img src="images/img4.jpg" alt="" />
-                    <h3>delicious food 4</h3>
-                </div>
-
-                <div class="box" data-aos="fade-up">
-                    <img src="images/img5.jpg" alt="" />
-                    <h3>delicious food 5</h3>
-                </div>
-
-                <div class="box" data-aos="fade-up">
-                    <img src="images/img6.jpg" alt="" />
-                    <h3>delicious food 6</h3>
-                </div>
-            </div>
-        </section>
-
-        <section class="order" id="order">
-            <h1 class="heading">Order a <span>table now</span></h1>
-
-            <div class="row">
-                <form action="" data-aos="fade-right">
-                    <input type="text" placeholder="your name" class="box" />
-                    <input type="email" placeholder="your email" class="box" />
-                    <input type="password" placeholder="your password" class="box" />
-                    <input type="number" placeholder="your number" class="box" />
-                    <textarea name="" id="" cols="10" rows="10" class="box address" placeholder="your address"></textarea>
-                    <textarea name="" id="" cols="10" rows="10" class="box address" placeholder="Your message here..."></textarea>
-                    <input type="submit" value="order now" class="btn" />
-                </form>
-
-                <div class="image" data-aos="fade-left">
-                    <img src="images/form-img.jpg" alt="" />
-                </div>
-            </div>
-        </section>
-
+        <main>
+            <%- body %>
+        </main>
         <%- include('../partials/footer') %>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-            <!-- jquery cdn link  -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-            <!-- custom js file link  -->
+            <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
             <script src="js/script.js"></script>
-
-            <!-- initializing aos  -->
-
-            <script>
-                //for animation
-                AOS.init({
-                    delay: 400,
-                    duration: 1000,
-                });
-            </script>
 </body>
 
 </html>

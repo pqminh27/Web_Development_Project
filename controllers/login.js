@@ -7,9 +7,9 @@ const { check, validationResult } = require("express-validator");
 const session = require("express-session");
 const sweetalert = require("sweetalert2");
 
-// router.get("/", (req, res) => {
-//     res.render("login.ejs");
-// });
+router.get("/", (req, res) => {
+    res.render("login.ejs");
+});
 
 const config = mysql.createConnection({
     host: "localhost",
@@ -46,7 +46,8 @@ router.post(
             config.query(
                 "SELECT * FROM users WHERE username = ? AND password = ?", [username, password],
                 function(error, results, fields) {
-                    if (results.length > 0) {
+                    if (result[0]) {
+                        //result[0] != undefined
                         req.session.loggedIn = true;
                         req.session.username = username;
                         res.cookie("username", username);
@@ -57,9 +58,8 @@ router.post(
                             sweetalert.fire("Logged In");
                             res.redirect("/home");
                         }
-                    } else {
-                        res.send("Incorect username or password.");
-                    }
+                    } else res.send("Incorect username or password.");
+
                     res.end();
                 }
             );
