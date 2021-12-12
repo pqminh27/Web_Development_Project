@@ -46,7 +46,7 @@ router.post(
             config.query(
                 "SELECT * FROM users WHERE username = ? AND password = ?", [username, password],
                 function(error, results, fields) {
-                    if (result[0]) {
+                    if (results[0]) {
                         //result[0] != undefined
                         req.session.loggedIn = true;
                         req.session.username = username;
@@ -56,7 +56,7 @@ router.post(
                             res.send("Please verify your email");
                         } else {
                             sweetalert.fire("Logged In");
-                            res.redirect("/home");
+                            res.redirect("/");
                         }
                     } else res.send("Incorect username or password.");
 

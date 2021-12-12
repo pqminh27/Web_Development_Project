@@ -14,6 +14,13 @@ const mysql = require("mysql");
 const path = require("path");
 const methodOverride = require("method-override"); //to override DELETE and PUT in HTML form
 const ejsMate = require("ejs-mate");
+const cookieParser = require("cookie-parser");
+const { ROLE, authUser, authRole } = require("./authenticateUser");
+const {
+    canViewProject,
+    scopedProjects,
+    canDeleteProject,
+} = require("./permission");
 //const expressLayouts = require("express-ejs-layouts");
 // const flash = require("connect-flash");
 // const passport = require("passport");
@@ -31,6 +38,7 @@ const food = require("./controllers/food");
 const receipt = require("./controllers/receipt");
 const review = require("./controllers/review");
 const setpass = require("./controllers/setpassword");
+const admin = require("./controllers/admin");
 
 app.use(express.static(__dirname + "/public"));
 app.set("views", path.join(__dirname, "views"));
@@ -84,19 +92,16 @@ app.use("/ordertable", ordertable);
 app.use("/food", food);
 app.use("/receipt", receipt);
 app.use("/review", review);
+app.use("/admin", admin);
 
 app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.all("*", (req, res, next) => {
-    next(new ExpressError("Page Not Found!", 404));
-});
-
 app.use((err, req, res, next) => {
     const { status = 500 } = err;
     if (!err.message) err.message = "Some Errors here!";
-    res.status(status).render("error.ejs", { err });
+    res.status(status).render("error.ejs");
 });
 
 app.listen(port, () => {
